@@ -1,0 +1,48 @@
+OUTPUT PROGRAMMA
+
+indirizzo x: 0x7ffd4d409250
+indirizzo y: 0x7ffd4d40924c
+indirizzo ad[0]: 0x7ffd4d409280
+indirizzo ad[1]: 0x7ffd4d409288
+indirizzo ad[2]: 0x7ffd4d409290
+indirizzo ad[3]: 0x7ffd4d409298
+indirizzo af[0]: 0x7ffd4d409260
+indirizzo af[1]: 0x7ffd4d409264
+indirizzo af[2]: 0x7ffd4d409268
+indirizzo af[3]: 0x7ffd4d40926c
+indirizzo af[4]: 0x7ffd4d409270
+indirizzo af[5]: 0x7ffd4d409274
+indirizzo af[6]: 0x7ffd4d409278
+indirizzo af[7]: 0x7ffd4d40927c
+indirizzo ai[0]: 0x7ffd4d409254
+indirizzo ai[1]: 0x7ffd4d409258
+indirizzo ai[2]: 0x7ffd4d40925c
+0
+
+
+RAPPRESENTAZIONE GRAFICA MEMORIA (commenti sotto)
+
+[ Indirizzo ]   [ Dim. ]   [ Variabile ]     [ Valore ]
+-------------------------------------------------------
+0x7ffd4d40924c     4 B        y (float)         1.1
+0x7ffd4d409250     4 B        x (int)           0   <-- COLPITO DA (&y)[1]
+0x7ffd4d409254     4 B        ai[0]             0
+0x7ffd4d409258     4 B        ai[1]             1
+0x7ffd4d40925c     4 B        ai[2]             2
+0x7ffd4d409260     4 B        af[0]             0.0
+0x7ffd4d409264     4 B        af[1]             1.1
+    .                         . 
+    .                         .
+0x7ffd4d40927c     4 B        af[7]             7.7
+0x7ffd4d409280     8 B        ad[0]             0.0
+0x7ffd4d409288     8 B        ad[1]             1.1
+    .                         .
+	.                         .                         
+	
+	
+COMMENTI
+
+Le variabili sono state allocate in modo contiguo: facendo la differenza degli indirizzi esadecimali, 
+gli elementi di af(float) e di ai(int) distano 4 byte mentre gli elementi di ad(double) distano 8 byte.
+L'istruzione (&y)[1] = 0 prende l'indirizzo di y (...924c) e aggiunge l'equivalente di un float (+4 byte)
+arrivando all'indirizzo ...9250 dove è allocata x il cui valore originale viene sovrascritto dallo 0.  
